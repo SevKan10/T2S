@@ -18,17 +18,8 @@ void setup() {
 
 void loop() {
   digitalWrite(R_acid,1);
-  delay(250);
-  digitalWrite(R_acid,0);
-  delay(2000);
-  
-  // digitalWrite(R_base,1);
-  // delay(250);
-  // digitalWrite(R_base,0);
-  // delay(2000);
-  
+  digitalWrite(R_base,1);
   digitalWrite(R_phenol,1);
-  delay(250);
-  digitalWrite(R_phenol,0);
-  delay(2000); 
+  digitalWrite(R_water,1);
+
 }

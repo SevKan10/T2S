@@ -21,8 +21,8 @@ Adafruit_SH1106G display = Adafruit_SH1106G(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, 
 #define button_Start 19
 #define R_sti 27
 #define R_water 26
-#define R_phenol 25
-#define R_base 33
+#define R_phenol 33
+#define R_base 25
 #define R_acid 32
 #define buzzer 2
 
@@ -115,6 +115,7 @@ void setup() {
 
 void loop() {
   Blynk.run();
+
 
   display.setTextSize(1);
   display.setCursor(0, 0);
@@ -260,7 +261,6 @@ void loop() {
         String data2 = "!Phenol! !Titrating!";  // Phenol
         Blynk.virtualWrite(V1, data2);
 
-        display.clearDisplay();
         display.setTextSize(1);
         display.setCursor(0, 10);
         display.println("Chemistry: Phenol");
@@ -295,7 +295,6 @@ void loop() {
         String data4 = "!NaOH! !Titrating!";  // Base
         Blynk.virtualWrite(V1, data4);
 
-        display.clearDisplay();
         display.setTextSize(1);
         display.setCursor(0, 10);
         display.println("Chemistry: NaOH");
@@ -330,7 +329,6 @@ void loop() {
         display.fillRect(15, 48, 75, 15, SH110X_WHITE);
         display.display();
 
-        display.clearDisplay();
         display.setTextSize(1);
         display.setCursor(0, 10);
         display.println("Chemistry: ");
@@ -397,4 +395,14 @@ void loop() {
 
 BLYNK_WRITE(V0) {
   buttonBlynk = param.asInt();
+}
+
+
+void ringBell(int delayTimes, int repeatTimes)
+{
+  for(int i=1; i<=repeatTimes; i++)
+  {
+    digitalWrite(buzzer, 1); delay(delayTimes);
+    digitalWrite(buzzer, 0); delay(delayTimes);
+  }
 }
